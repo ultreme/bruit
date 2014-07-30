@@ -1,6 +1,8 @@
-(ns bruit.core)
+(ns bruit.core
+  (:require [overtone.live :refer :all]))
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+(definst bruit [freq 440]
+  (let [env (env-gen (perc 0.01 2) :action FREE)]
+    (* env (sin-osc freq))))
+
+(bruit)
